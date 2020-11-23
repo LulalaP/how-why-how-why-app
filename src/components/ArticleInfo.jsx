@@ -99,6 +99,11 @@ const ArticleInfo = ({ article }) => {
         <CountItem name="views" count={item.viewsCount} />
         <CountItem name="review" count={item.reviewCount} />
       </View>
+      <View style={styles.flexContainerC}>
+        <View>
+          <Text style={styles.Text}>{item.text}</Text>
+        </View>
+      </View>
     </View>
   );
 };

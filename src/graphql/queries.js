@@ -29,6 +29,11 @@ const REVIEW_DETAILS = gql`
       id
       username
     }
+    article{
+      id
+      title
+    }
+    articleId
   }
 `;
 
