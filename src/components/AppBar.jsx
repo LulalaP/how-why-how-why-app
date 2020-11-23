@@ -47,7 +47,7 @@ const AppBar = () => {
     <View style={styles.flexContainer}>
       <ScrollView style={styles.scrollView} horizontal>
         <View style={styles.flexItemA}>
-          <Link to="/" text="Repositories" path="/" cb={routeTabPress} component={AppBarTab} />
+          <Link to="/" text="Articles" path="/" cb={routeTabPress} component={AppBarTab} />
         </View>
         <View style={styles.flexItemA}>
           {authorizedUser && (

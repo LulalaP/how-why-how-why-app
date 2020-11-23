@@ -1,35 +1,35 @@
 import { useQuery } from '@apollo/react-hooks';
 
-import { GET_REPOSITORIES } from '../graphql/queries';
+import { GET_ARTICLES } from '../graphql/queries';
 
-const useRepositories = (variables) => {
+const useArticles = (variables) => {
   const {
     data, fetchMore, loading, ...result
-  } = useQuery(GET_REPOSITORIES, {
+  } = useQuery(GET_ARTICLES, {
     fetchPolicy: 'cache-and-network',
     variables,
   });
 
   const handleFetchMore = () => {
-    const canFetchMore = !loading && data && data.repositories.pageInfo.hasNextPage;
+    const canFetchMore = !loading && data && data.articles.pageInfo.hasNextPage;
 
     if (!canFetchMore) {
       return;
     }
 
     fetchMore({
-      query: GET_REPOSITORIES,
+      query: GET_ARTICLES,
       variables: {
-        after: data.repositories.pageInfo.endCursor,
+        after: data.articles.pageInfo.endCursor,
         ...variables,
       },
       updateQuery: (previousResult, { fetchMoreResult }) => {
         const nextResult = {
-          repositories: {
-            ...fetchMoreResult.repositories,
+          articles: {
+            ...fetchMoreResult.articles,
             edges: [
-              ...previousResult.repositories.edges,
-              ...fetchMoreResult.repositories.edges,
+              ...previousResult.articles.edges,
+              ...fetchMoreResult.articles.edges,
             ],
           },
         };
@@ -40,11 +40,11 @@ const useRepositories = (variables) => {
   };
 
   return {
-    repositories: data ? data.repositories : undefined,
+    articles: data ? data.articles : undefined,
     fetchMore: handleFetchMore,
     loading,
     ...result,
   };
 };
 
-export default useRepositories;
+export default useArticles;

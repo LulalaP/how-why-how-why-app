@@ -1,16 +1,22 @@
 import { gql } from 'apollo-boost';
 
-const REPOSITORY_DETAILS = gql`
-  fragment repositoryDetails on Repository {
+const ARTICLE_DETAILS = gql`
+  fragment articleDetails on Article {
     id
-    fullName
-    description
-    language
-    forksCount
-    stargazersCount
-    ratingAverage
+    title
+    titleEn
+    userId
+    user {
+      id
+      username
+    }
+    createdAt
     reviewCount
-    ownerAvatarUrl
+    viewsCount
+    likesCount
+    url
+    description
+    text
   }
 `;
 
@@ -18,7 +24,6 @@ const REVIEW_DETAILS = gql`
   fragment reviewDetails on Review {
     id
     text
-    rating
     createdAt
     user {
       id
@@ -27,15 +32,15 @@ const REVIEW_DETAILS = gql`
   }
 `;
 
-export const GET_REPOSITORIES = gql`
-  query getRepositories(
-    $orderBy: AllRepositoriesOrderBy
+export const GET_ARTICLES = gql`
+  query getArticles(
+    $orderBy: AllArticlesOrderBy
     $orderDirection: OrderDirection
     $searchKeyword: String
     $first: Int
     $after: String
   ) {
-    repositories(
+    articles(
       orderBy: $orderBy
       orderDirection: $orderDirection
       searchKeyword: $searchKeyword
@@ -44,7 +49,7 @@ export const GET_REPOSITORIES = gql`
     ) {
       edges {
         node {
-          ...repositoryDetails
+          ...articleDetails
         }
         cursor
       }
@@ -56,13 +61,13 @@ export const GET_REPOSITORIES = gql`
       }
     }
   }
-  ${REPOSITORY_DETAILS}
+  ${ARTICLE_DETAILS}
 `;
 
-export const GET_REPOSITORY = gql`
-  query getRepository( $id: ID!, $first: Int!, $after: String){
-    repository(id: $id ) {
-      ...repositoryDetails
+export const GET_ARTICLE = gql`
+  query getArticle( $id: ID!, $first: Int!, $after: String){
+    article(id: $id ) {
+      ...articleDetails
       reviews (first: $first, after: $after) {
         edges {
           node {
@@ -79,7 +84,7 @@ export const GET_REPOSITORY = gql`
       }
     }
   }
-  ${REPOSITORY_DETAILS}
+  ${ARTICLE_DETAILS}
   ${REVIEW_DETAILS}
 `;
 
@@ -91,8 +96,8 @@ export const GET_AUTHORIZED_USER = gql`
       reviews (first: $first, after: $after) {
         edges @include(if: $includeReviews) {
           node {
-            repository {
-              fullName
+            article {
+              title
               id
             }
             ...reviewDetails

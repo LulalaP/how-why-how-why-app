@@ -1,6 +1,6 @@
 import React from 'react';
 import { FlatList, View, StyleSheet } from 'react-native';
-import RepositoryItem from './RepositoryItem';
+import ArticleItem from './ArticleItem';
 import { PickerSelect } from './PickerSelect';
 import SearchBar from './SearchBar';
 
@@ -12,9 +12,9 @@ const styles = StyleSheet.create({
 
 const ItemSeparator = () => <View style={styles.separator} />;
 
-class RepositoryListContainer extends React.Component {
+class ArticleListContainer extends React.Component {
   renderItem = ({ item }) => (
-    <RepositoryItem item={item} />
+    <ArticleItem item={item} />
   );
 
   renderHeader = () => {
@@ -29,17 +29,17 @@ class RepositoryListContainer extends React.Component {
   }
 
   render() {
-    const { repositories, onEndReach } = this.props;
-    if (repositories === undefined) return null;
+    const { articles, onEndReach } = this.props;
+    if (articles === undefined) return null;
 
-    const repositoryNodes = repositories.edges
-      ? repositories.edges.map((edge) => edge.node)
+    const articleNodes = articles.edges
+      ? articles.edges.map((edge) => edge.node)
       : [];
 
     return (
       <FlatList
-        testID="RepositoryListContainer"
-        data={repositoryNodes}
+        testID="ArticleListContainer"
+        data={articleNodes}
         ItemSeparatorComponent={ItemSeparator}
         renderItem={this.renderItem}
         keyExtractor={(item) => item.id}
@@ -51,4 +51,4 @@ class RepositoryListContainer extends React.Component {
   }
 }
 
-export default RepositoryListContainer;
+export default ArticleListContainer;

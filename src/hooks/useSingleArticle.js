@@ -1,34 +1,34 @@
 import { useQuery } from '@apollo/react-hooks';
-import { GET_REPOSITORY } from '../graphql/queries';
+import { GET_ARTICLE } from '../graphql/queries';
 
-const useSingleRepository = (variables) => {
+const useSingleArticle = (variables) => {
   const {
     data, fetchMore, loading, ...result
-  } = useQuery(GET_REPOSITORY, {
+  } = useQuery(GET_ARTICLE, {
     fetchPolicy: 'cache-and-network',
     variables,
   });
 
   const handleFetchMore = () => {
-    const canFetchMore = !loading && data && data.repository.reviews.pageInfo.hasNextPage;
+    const canFetchMore = !loading && data && data.article.reviews.pageInfo.hasNextPage;
 
     if (!canFetchMore) {
       return;
     }
 
     fetchMore({
-      query: GET_REPOSITORY,
+      query: GET_ARTICLE,
       variables: {
-        after: data.repository.reviews.pageInfo.endCursor,
+        after: data.article.reviews.pageInfo.endCursor,
         ...variables,
       },
       updateQuery: (previousResult, { fetchMoreResult }) => {
         const nextResult = {
-          repository: {
-            ...fetchMoreResult.repository,
+          article: {
+            ...fetchMoreResult.article,
             edges: [
-              ...previousResult.repository.reviews.edges,
-              ...fetchMoreResult.repository.reviews.edges,
+              ...previousResult.article.reviews.edges,
+              ...fetchMoreResult.article.reviews.edges,
             ],
           },
         };
@@ -39,11 +39,11 @@ const useSingleRepository = (variables) => {
   };
 
   return {
-    repository: data ? data.repository : undefined,
+    article: data ? data.article : undefined,
     fetchMore: handleFetchMore,
     loading,
     ...result,
   };
 };
 
-export default useSingleRepository;
+export default useSingleArticle;

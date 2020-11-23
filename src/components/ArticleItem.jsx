@@ -6,6 +6,8 @@ import { useHistory } from 'react-router-native';
 import theme from '../Theme';
 import CountItem from './CountItem';
 
+const imgURL = 'https://images.unsplash.com/photo-1605738862138-6704bedb5202?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80';
+
 const styles = StyleSheet.create({
   container: {
     flexGrow: 1,
@@ -17,14 +19,6 @@ const styles = StyleSheet.create({
     height: 50,
     margin: 20,
     borderRadius: 5,
-  },
-  language: {
-    backgroundColor: theme.colors.primary,
-    padding: 10,
-    borderRadius: 5,
-  },
-  languageText: {
-    color: 'white',
   },
   flexContainerA: {
     display: 'flex',
@@ -46,7 +40,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: 20,
   },
-  fullname: {
+  title: {
     color: theme.colors.textPrimary,
     fontSize: theme.fontSizes.subheading,
     fontWeight: theme.fontWeights.bold,
@@ -60,11 +54,11 @@ const styles = StyleSheet.create({
   },
 });
 
-const RepositoryItem = ({ item }) => {
+const ArticleItem = ({ item }) => {
   const history = useHistory();
 
   const onPress = () => {
-    history.push(`/repositories/${item.id}`);
+    history.push(`/articles/${item.id}`);
   };
 
   return (
@@ -75,26 +69,22 @@ const RepositoryItem = ({ item }) => {
             <Image
               style={styles.tinyLogo}
               source={{
-                uri: item.ownerAvatarUrl,
+                uri: imgURL,
               }}
             />
           </View>
           <View style={styles.flexContainerB}>
             <View>
-              <Text testID="fullName" style={styles.fullname}>{item.fullName}</Text>
+              <Text style={styles.title}>{item.title}</Text>
             </View>
             <View>
               <Text style={styles.description}>{item.description}</Text>
             </View>
-            <View style={styles.language}>
-              <Text style={styles.languageText}>{item.language}</Text>
-            </View>
           </View>
         </View>
         <View style={styles.flexContainerC}>
-          <CountItem name="stars" count={item.stargazersCount} />
-          <CountItem name="forks" count={item.forksCount} />
-          <CountItem name="rating" count={item.ratingAverage} />
+          <CountItem name="likes" count={item.likesCount} />
+          <CountItem name="views" count={item.viewsCount} />
           <CountItem name="review" count={item.reviewCount} />
         </View>
       </View>
@@ -102,4 +92,4 @@ const RepositoryItem = ({ item }) => {
   );
 };
 
-export default RepositoryItem;
+export default ArticleItem;

@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { useDebounce } from 'use-debounce';
 
-import useRepositories from '../hooks/useRepositories';
-import RepositoryListContainer from './RepositoryListContainer';
+import useArticles from '../hooks/useArticles';
+import ArticleListContainer from './ArticleListContainer';
 
-const RepositoryList = () => {
+const ArticleList = () => {
   const [orderBy, setOrderBy] = useState('latest');
   const [searchValue, setSearchValue] = useState('');
   const [debouncedSearchValue] = useDebounce(searchValue, 500);
@@ -26,15 +26,15 @@ const RepositoryList = () => {
     first: 8,
   };
 
-  const { repositories, fetchMore } = useRepositories(variables);
+  const { articles, fetchMore } = useArticles(variables);
 
   const onEndReach = () => {
     fetchMore();
   };
 
   return (
-    <RepositoryListContainer
-      repositories={repositories}
+    <ArticleListContainer
+      articles={articles}
       setOrderBy={setOrderBy}
       setSearchValue={setSearchValue}
       handleSearch={handleSearch}
@@ -43,4 +43,4 @@ const RepositoryList = () => {
   );
 };
 
-export default RepositoryList;
+export default ArticleList;

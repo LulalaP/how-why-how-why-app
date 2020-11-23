@@ -1,8 +1,8 @@
 import React from 'react';
 import { FlatList, View, StyleSheet } from 'react-native';
 import { useParams } from 'react-router-native';
-import useSingleRepository from '../hooks/useSingleRepository';
-import RepositoryInfo from './RepositoryInfo';
+import useSingleArticle from '../hooks/useSingleArticle';
+import ArticleInfo from './ArticleInfo';
 import ReviewItem from './ReviewItem';
 
 const styles = StyleSheet.create({
@@ -13,16 +13,16 @@ const styles = StyleSheet.create({
 
 const ItemSeparator = () => <View style={styles.separator} />;
 
-const SingleRepositoryItem = () => {
+const SingleArticleItem = () => {
   const { id } = useParams();
   const variables = {
     id,
     first: 8,
   };
-  const { repository, fetchMore } = useSingleRepository(variables);
-  if (repository === undefined) return null;
+  const { article, fetchMore } = useSingleArticle(variables);
+  if (article === undefined) return null;
 
-  const { reviews } = repository;
+  const { reviews } = article;
 
   const reviewNodes = reviews
     ? reviews.edges.map((edge) => edge.node)
@@ -39,11 +39,11 @@ const SingleRepositoryItem = () => {
       // eslint-disable-next-line no-shadow
       keyExtractor={({ id }) => id}
       ItemSeparatorComponent={ItemSeparator}
-      ListHeaderComponent={() => <RepositoryInfo repository={repository} />}
+      ListHeaderComponent={() => <ArticleInfo article={article} />}
       onEndReached={onEndReach}
       onEndReachedThreshold={0.5}
     />
   );
 };
 
-export default SingleRepositoryItem;
+export default SingleArticleItem;
