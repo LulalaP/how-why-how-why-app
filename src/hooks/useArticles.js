@@ -4,7 +4,7 @@ import { GET_ARTICLES } from '../graphql/queries';
 
 const useArticles = (variables) => {
   const {
-    data, fetchMore, loading, ...result
+    data, fetchMore, refetch, loading, ...result
   } = useQuery(GET_ARTICLES, {
     fetchPolicy: 'cache-and-network',
     variables,
@@ -42,6 +42,7 @@ const useArticles = (variables) => {
   return {
     articles: data ? data.articles : undefined,
     fetchMore: handleFetchMore,
+    refetch,
     loading,
     ...result,
   };

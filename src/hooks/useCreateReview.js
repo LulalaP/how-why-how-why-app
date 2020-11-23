@@ -6,12 +6,12 @@ const useCreateReview = () => {
   const [mutate, result] = useMutation(CREATE_REVIEW);
 
   const createReview = async ({
-    repoOwnerName, repoName, rating, review,
+    articleId, review,
   }) => {
-    mutate({
+    await mutate({
       variables: {
         // eslint-disable-next-line radix
-        repoOwnerName, repoName, rating: parseInt(rating), review,
+        articleId, review,
       },
     });
   };

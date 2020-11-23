@@ -9,9 +9,10 @@ export const AUTHORIZE = gql`
 `;
 
 export const CREATE_REVIEW = gql`
-  mutation createReview( $repoOwnerName: String!, $repoName: String!, $rating: Int!, $review: String! ) {
-    createReview( review: { ownerName: $repoOwnerName, repositoryName: $repoName, rating: $rating, text: $review } ) {
-      repositoryId
+  mutation createReview( $articleId: String!, $review: String! ) {
+    createReview( review: { articleId: $articleId, text: $review } ) {
+      id
+      articleId
     }
   }
 `;

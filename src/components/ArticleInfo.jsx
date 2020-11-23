@@ -4,6 +4,7 @@ import {
 } from 'react-native';
 import theme from '../Theme';
 import CountItem from './CountItem';
+import CreateReview from './CreateReview';
 
 const imgURL = 'https://images.unsplash.com/photo-1605738862138-6704bedb5202?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80';
 
@@ -104,6 +105,7 @@ const ArticleInfo = ({ article }) => {
           <Text style={styles.Text}>{item.text}</Text>
         </View>
       </View>
+      <CreateReview articleId={item.id} />
     </View>
   );
 };

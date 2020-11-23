@@ -24,7 +24,7 @@ const Main = () => (
       <Route path="/articles/:id" exact>
         <SingleArticleItem />
       </Route>
-      <Route path="/createreview" exact>
+      <Route path="/articles/:id/createreview" exact>
         <CreateReview />
       </Route>
       <Route path="/" exact>

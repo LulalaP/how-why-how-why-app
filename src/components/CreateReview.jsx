@@ -1,32 +1,28 @@
 import React from 'react';
-import { useHistory } from 'react-router-native';
 import useCreateReview from '../hooks/useCreateReview';
+import useSingleArticle from '../hooks/useSingleArticle';
 import CreateReviewContainer from './CreateReviewContainer';
 
 const initialValues = {
-  repoOwnerName: '',
-  repoName: '',
-  rating: '',
   review: '',
 };
 
-const CreateReview = () => {
+const CreateReview = ({ articleId }) => {
   const [createReview] = useCreateReview();
-  const history = useHistory();
+  const variables = {
+    id: articleId,
+    first: 8,
+  };
+  const { refetch } = useSingleArticle(variables);
 
   const onSubmit = async (values) => {
-    const {
-      repoOwnerName, repoName, rating, review,
-    } = values;
+    const { review } = values;
 
     try {
-      const { data } = await createReview({
-        repoOwnerName, repoName, rating, review,
+      await createReview({
+        articleId, review,
       });
-      // console.log('create a review', data);
-      if (data.createReview.repositoryId) {
-        history.push(`/repositories/${data.createReview.repositoryId}`);
-      }
+      refetch();
     } catch (e) {
       // eslint-disable-next-line no-console
       console.log(e);

@@ -25,9 +25,6 @@ const styles = StyleSheet.create({
 
 const CreateReviewForm = ({ onSubmit }) => (
   <View style={styles.container}>
-    <FormikTextInput testID="repoOwnerField" name="repoOwnerName" placeholder="Repository owner name" />
-    <FormikTextInput testID="repositoryNameField" name="repoName" placeholder="Repository name" />
-    <FormikTextInput testID="ratingField" name="rating" placeholder="Rating between 0 and 100" />
     <FormikTextInput testID="reviewField" name="review" placeholder="Review" multiline />
     <TouchableOpacity onPress={onSubmit} activeOpacity={0.8}>
       <View style={styles.Btn}>
