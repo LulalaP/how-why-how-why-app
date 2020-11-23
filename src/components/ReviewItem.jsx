@@ -60,7 +60,7 @@ const ReviewItem = ({ item }) => {
     <View style={styles.container}>
       <View style={styles.flexContainerA}>
         <View style={styles.ratingContainer}>
-          <Text style={styles.ratingText}>{item.rating}</Text>
+          <Text style={styles.ratingText}>100</Text>
         </View>
         <View style={styles.flexContainerB}>
           <View>

@@ -87,8 +87,8 @@ const MyReviewItem = ({ item, refetch }) => {
   if (!item) return null;
   const date = format(new Date(item.createdAt), 'dd.MM.yyyy');
 
-  const handleViewRepository = () => {
-    history.push(`/repositories/${item.repository.id}`);
+  const handleViewArticle = () => {
+    history.push(`/articles/${item.articleId}`);
     return true;
   };
 
@@ -121,11 +121,11 @@ const MyReviewItem = ({ item, refetch }) => {
     <View style={styles.container}>
       <View style={styles.flexContainerA}>
         <View style={styles.ratingContainer}>
-          <Text style={styles.ratingText}>{item.rating}</Text>
+          <Text style={styles.ratingText}>100</Text>
         </View>
         <View style={styles.flexContainerB}>
           <View>
-            <Text style={styles.nameText}>{item.repository.fullName}</Text>
+            <Text style={styles.nameText}>{item.article.title}</Text>
           </View>
           <View>
             <Text style={styles.dateText}>{date}</Text>
@@ -136,10 +136,10 @@ const MyReviewItem = ({ item, refetch }) => {
         </View>
       </View>
       <View style={styles.flexContainerC}>
-        <TouchableOpacity onPress={handleViewRepository} activeOpacity={0.8}>
+        <TouchableOpacity onPress={handleViewArticle} activeOpacity={0.8}>
           <View style={styles.viewButton}>
             <Text style={styles.buttonText}>
-              View repository
+              View article
             </Text>
           </View>
         </TouchableOpacity>

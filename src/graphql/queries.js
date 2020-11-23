@@ -71,6 +71,10 @@ export const GET_ARTICLE = gql`
       reviews (first: $first, after: $after) {
         edges {
           node {
+            article {
+              id
+              title
+            }
             ...reviewDetails
           }
           cursor
@@ -96,10 +100,6 @@ export const GET_AUTHORIZED_USER = gql`
       reviews (first: $first, after: $after) {
         edges @include(if: $includeReviews) {
           node {
-            article {
-              title
-              id
-            }
             ...reviewDetails
           }
           cursor

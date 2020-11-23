@@ -71,8 +71,8 @@ const styles = StyleSheet.create({
     fontWeight: theme.fontWeights.bold,
   },
 });
-const ArticleInfo = ({ repository }) => {
-  const item = repository;
+const ArticleInfo = ({ article }) => {
+  const item = article;
 
   return (
     <View style={styles.container}>

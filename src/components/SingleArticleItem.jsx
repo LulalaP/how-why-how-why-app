@@ -15,6 +15,7 @@ const ItemSeparator = () => <View style={styles.separator} />;
 
 const SingleArticleItem = () => {
   const { id } = useParams();
+
   const variables = {
     id,
     first: 8,
