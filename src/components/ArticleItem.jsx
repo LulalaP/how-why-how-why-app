@@ -15,10 +15,9 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
   tinyLogo: {
-    width: 50,
-    height: 50,
+    width: 150,
+    height: 80,
     margin: 20,
-    borderRadius: 5,
   },
   flexContainerA: {
     display: 'flex',
@@ -28,7 +27,6 @@ const styles = StyleSheet.create({
   flexContainerB: {
     display: 'flex',
     flexDirection: 'column',
-    justifyContent: 'space-between',
     alignItems: 'flex-start',
     paddingTop: 20,
     flex: 0.8,

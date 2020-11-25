@@ -64,6 +64,16 @@ const AppBar = () => {
     );
   }
 
+  function CreateArticle() {
+    return (
+      <View style={styles.flexItemA}>
+        {authorizedUser && (
+        <Link to="/create_article" text="Create Article" path="/create_article" cb={routeTabPress} component={AppBarTab} />
+        )}
+      </View>
+    );
+  }
+
   function SignIn() {
     return (
       <View style={styles.flexItemA}>
@@ -89,6 +99,7 @@ const AppBar = () => {
     <View style={styles.flexContainer}>
       <ScrollView style={styles.scrollView} horizontal>
         <Articles />
+        <CreateArticle />
         <MyReviews />
         <SignIn />
         <SignUp />

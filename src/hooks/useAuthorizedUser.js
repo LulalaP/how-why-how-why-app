@@ -4,7 +4,7 @@ import { GET_AUTHORIZED_USER } from '../graphql/queries';
 
 const useAuthorizedUser = (variables) => {
   const {
-    data, fetchMore, loading, ...result
+    data, fetchMore, refetch, loading, ...result
   } = useQuery(GET_AUTHORIZED_USER, {
     fetchPolicy: 'cache-and-network',
     variables,
@@ -42,6 +42,7 @@ const useAuthorizedUser = (variables) => {
   return {
     authorizedUser: data ? data.authorizedUser : undefined,
     fetchMore: handleFetchMore,
+    refetch,
     loading,
     ...result,
   };

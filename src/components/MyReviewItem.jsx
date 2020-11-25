@@ -1,12 +1,14 @@
 import React from 'react';
 import { useHistory } from 'react-router-native';
 import {
-  View, Text, StyleSheet, TouchableOpacity, Alert,
+  View, Text, StyleSheet, TouchableOpacity, Alert, Image,
 } from 'react-native';
 import { format } from 'date-fns';
 import theme from '../Theme';
 
 import useDeleteReview from '../hooks/useDeleteReview';
+
+const imgURL = 'https://images.unsplash.com/photo-1605738862138-6704bedb5202?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80';
 
 const styles = StyleSheet.create({
   container: {
@@ -44,22 +46,11 @@ const styles = StyleSheet.create({
     color: theme.colors.textSecondary,
     padding: 5,
   },
-  ratingContainer: {
-    flexDirection: 'row',
-    flexGrow: 0,
+  tinyLogo: {
+    width: 120,
+    height: 70,
     marginRight: 20,
-    height: 60,
-    width: 60,
-    borderWidth: 3,
-    borderColor: theme.colors.primary,
-    borderRadius: 30,
-    justifyContent: 'center',
-  },
-  ratingText: {
-    fontSize: theme.fontSizes.heading,
-    fontWeight: theme.fontWeights.bold,
-    color: theme.colors.primary,
-    alignSelf: 'center',
+    marginLeft: 20,
   },
   viewButton: {
     padding: 15,
@@ -120,8 +111,13 @@ const MyReviewItem = ({ item, refetch }) => {
   return (
     <View style={styles.container}>
       <View style={styles.flexContainerA}>
-        <View style={styles.ratingContainer}>
-          <Text style={styles.ratingText}>100</Text>
+        <View>
+          <Image
+            style={styles.tinyLogo}
+            source={{
+              uri: imgURL,
+            }}
+          />
         </View>
         <View style={styles.flexContainerB}>
           <View>
