@@ -33,23 +33,6 @@ const styles = StyleSheet.create({
     color: theme.colors.textSecondary,
     padding: 5,
   },
-  ratingContainer: {
-    flexDirection: 'row',
-    flexGrow: 0,
-    marginRight: 20,
-    height: 60,
-    width: 60,
-    borderWidth: 3,
-    borderColor: theme.colors.primary,
-    borderRadius: 30,
-    justifyContent: 'center',
-  },
-  ratingText: {
-    fontSize: theme.fontSizes.heading,
-    fontWeight: theme.fontWeights.bold,
-    color: theme.colors.primary,
-    alignSelf: 'center',
-  },
 });
 
 const ReviewItem = ({ item }) => {
@@ -59,9 +42,6 @@ const ReviewItem = ({ item }) => {
   return (
     <View style={styles.container}>
       <View style={styles.flexContainerA}>
-        <View style={styles.ratingContainer}>
-          <Text style={styles.ratingText}>100</Text>
-        </View>
         <View style={styles.flexContainerB}>
           <View>
             <Text style={styles.nameText}>{item.user.username}</Text>

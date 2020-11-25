@@ -1,3 +1,6 @@
+/* eslint-disable react/jsx-props-no-spreading */
+/* eslint-disable no-nested-ternary */
+/* eslint-disable operator-linebreak */
 import React, { useContext, useCallback } from 'react';
 import { View, StyleSheet, ScrollView } from 'react-native';
 import { Link, useHistory } from 'react-router-native';
@@ -43,33 +46,52 @@ const AppBar = () => {
     history.push(path);
   }, []);
 
+  function Articles() {
+    return (
+      <View style={styles.flexItemA}>
+        <Link to="/" text="Articles" path="/" cb={routeTabPress} component={AppBarTab} />
+      </View>
+    );
+  }
+
+  function MyReviews() {
+    return (
+      <View style={styles.flexItemA}>
+        {authorizedUser && (
+        <Link to="/myreviews" text="My reviews" path="/myreviews" cb={routeTabPress} component={AppBarTab} />
+        )}
+      </View>
+    );
+  }
+
+  function SignIn() {
+    return (
+      <View style={styles.flexItemA}>
+        {authorizedUser === null && (
+        <Link to="/signin" text="Sign in" path="/signin" cb={routeTabPress} component={AppBarTab} />)}
+        {authorizedUser && (
+          <AppBarTab text="Sign out" path="/" cb={signOut} />
+        )}
+      </View>
+    );
+  }
+
+  function SignUp() {
+    return (
+      <View style={styles.flexItemA}>
+        {authorizedUser === null && (
+        <Link to="/signup" text="Sign up" path="/signup" cb={routeTabPress} component={AppBarTab} />)}
+      </View>
+    );
+  }
+
   return (
     <View style={styles.flexContainer}>
       <ScrollView style={styles.scrollView} horizontal>
-        <View style={styles.flexItemA}>
-          <Link to="/" text="Articles" path="/" cb={routeTabPress} component={AppBarTab} />
-        </View>
-        <View style={styles.flexItemA}>
-          {authorizedUser && (
-          <Link to="/createreview" text="Create a review" path="/createreview" cb={routeTabPress} component={AppBarTab} />
-          )}
-        </View>
-        <View style={styles.flexItemA}>
-          {authorizedUser && (
-          <Link to="/myreviews" text="My reviews" path="/myreviews" cb={routeTabPress} component={AppBarTab} />
-          )}
-        </View>
-        <View style={styles.flexItemA}>
-          {authorizedUser === null && (
-          <Link to="/signin" text="Sign in" path="/signin" cb={routeTabPress} component={AppBarTab} />)}
-          {authorizedUser && (
-            <AppBarTab text="Sign out" path="/" cb={signOut} />
-          )}
-        </View>
-        <View style={styles.flexItemA}>
-          {authorizedUser === null && (
-          <Link to="/signup" text="Sign up" path="/signup" cb={routeTabPress} component={AppBarTab} />)}
-        </View>
+        <Articles />
+        <MyReviews />
+        <SignIn />
+        <SignUp />
       </ScrollView>
     </View>
   );

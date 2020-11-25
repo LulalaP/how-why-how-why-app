@@ -2,6 +2,7 @@ import React from 'react';
 import {
   View, Text, StyleSheet, Image,
 } from 'react-native';
+import useAuthorizedUser from '../hooks/useAuthorizedUser';
 import theme from '../Theme';
 import CountItem from './CountItem';
 import CreateReview from './CreateReview';
@@ -14,19 +15,9 @@ const styles = StyleSheet.create({
     flexShrink: 1,
     backgroundColor: 'white',
   },
-  tinyLogo: {
-    width: 50,
-    height: 50,
-    margin: 20,
-    borderRadius: 5,
-  },
-  language: {
-    backgroundColor: theme.colors.primary,
-    padding: 10,
-    borderRadius: 5,
-  },
-  languageText: {
-    color: 'white',
+  image: {
+    height: 250,
+    justifyContent: 'space-between',
   },
   flexContainerA: {
     display: 'flex',
@@ -50,15 +41,15 @@ const styles = StyleSheet.create({
   },
   title: {
     color: theme.colors.textPrimary,
-    fontSize: theme.fontSizes.subheading,
+    fontSize: theme.fontSizes.heading,
     fontWeight: theme.fontWeights.bold,
-    marginBottom: 10,
+    margin: 10,
   },
   description: {
     color: theme.colors.textSecondary,
     fontSize: theme.fontSizes.body,
     fontWeight: theme.fontWeights.normal,
-    marginBottom: 10,
+    margin: 10,
   },
   button: {
     padding: 15,
@@ -73,19 +64,13 @@ const styles = StyleSheet.create({
   },
 });
 const ArticleInfo = ({ article }) => {
+  const { authorizedUser } = useAuthorizedUser();
   const item = article;
 
   return (
     <View style={styles.container}>
       <View style={styles.flexContainerA}>
-        <View>
-          <Image
-            style={styles.tinyLogo}
-            source={{
-              uri: imgURL,
-            }}
-          />
-        </View>
+
         <View style={styles.flexContainerB}>
           <View>
             <Text style={styles.title}>{item.title}</Text>
@@ -94,6 +79,14 @@ const ArticleInfo = ({ article }) => {
             <Text style={styles.description}>{item.description}</Text>
           </View>
         </View>
+      </View>
+      <View>
+        <Image
+          style={styles.image}
+          source={{
+            uri: imgURL,
+          }}
+        />
       </View>
       <View style={styles.flexContainerC}>
         <CountItem name="likes" count={item.likesCount} />
@@ -105,7 +98,7 @@ const ArticleInfo = ({ article }) => {
           <Text style={styles.Text}>{item.text}</Text>
         </View>
       </View>
-      <CreateReview articleId={item.id} />
+      {authorizedUser && (<CreateReview articleId={item.id} />)}
     </View>
   );
 };
