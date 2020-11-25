@@ -10,7 +10,6 @@ const useCreateReview = () => {
   }) => {
     await mutate({
       variables: {
-        // eslint-disable-next-line radix
         articleId, review,
       },
     });
