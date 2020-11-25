@@ -26,7 +26,23 @@ export const CREATE_USER = gql`
 `;
 
 export const CREATE_ARTICLE = gql`
-  
+  mutation createArticle( $title: String!, $titleEn: String!, $description: String!, $text: String! ) {
+    createArticle(article: { title: $title, titleEn: $titleEn, description: $description, text: $text } ) {
+      id
+      user{
+        id
+        username
+        createdAt
+      }
+      title
+      titleEn
+      userId
+      url
+      description
+      createdAt
+      text
+    }
+  }
 `;
 
 export const DELETE_REVIEW = gql`
