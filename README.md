@@ -16,7 +16,9 @@ Node (versions `12.X.X` are tested, but later versions _might_ work as well) and
 
 4. To get started, install the Expo mobile app by following the instructions in the [Expo's documentation](https://docs.expo.io/versions/latest/get-started/installation/#2-mobile-app-expo-client-for-ios). Note that the Expo mobile app can only open your application if your mobile device is connected to *the same local network* (e.g. connected to the same Wi-Fi network) as the computer you are using for development.
 
-   When the Expo mobile app has finished installing, open it up. Next, if the Expo development tools is not already running, start it by running `npm start`. In the bottom left corner of the development tools, you should be able to see a QR code. Within the Expo mobile app, press *Scan QR Code* and scan the QR code displayed in the development tools. The Expo mobile app should start building the JavaScript bundle and after it is finished you should be able to see your application. Now, every time you want to reopen your application in the Expo mobile app, you should be able to access the application without scanning the QR code by pressing it in the *Recently opened* list in the *Projects* view.
+   When the Expo mobile app has finished installing, open it up. Next, if the Expo development tools is not already running, start it by running `npm start`. In the bottom left corner of the development tools, you should be able to see a QR code. Within the Expo mobile app, press *Scan QR Code* and scan the QR code displayed in the development tools. *Add the IP Address above the QR code to the `.env` file in step5.* The Expo mobile app should start building the JavaScript bundle and after it is finished you should be able to see your application. Now, every time you want to reopen your application in the Expo mobile app, you should be able to access the application without scanning the QR code by pressing it in the *Recently opened* list in the *Projects* view.
+   
+5. Create a file `.env` in the `how-why-how-why-app` directory and copy the contents of the `.env.template` file there.  Fill your IP Address here. 
 
 ## 📖 Documentation
 
