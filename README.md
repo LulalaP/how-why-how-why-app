@@ -40,19 +40,19 @@ GraphQL playground offers documentation on how to use the API. Start the server 
 
    
 
-   1. When logged in, the `Create Article` and `My reviews` App Navigation will show to the app bar. You can create new article and see your reviews. You will be routed to the article when you press the `view article `button. You can delete single review by the `Delete review` button. 
+3. When logged in, the `Create Article` and `My reviews` App Navigation will show to the app bar. You can create new article and see your reviews. You will be routed to the article when you press the `view article `button. You can delete single review by the `Delete review` button. 
 
    | Create Article                                               | My reviews                                                   |
    | ------------------------------------------------------------ | ------------------------------------------------------------ |
    | <img src="/img/CreateArticle.png" alt="Create Article" style="zoom: 33%;" /> | <img src="/img/MyReviews.png" alt="My reviews" style="zoom: 33%;" /> |
 
-3. When you tap single article from article list, you will be routed to that single article. And you can create new review here. 
+4. When you tap single article from article list, you will be routed to that single article. And you can create new review here. 
 
    | Single Article                                               | Create review                                                |
    | ------------------------------------------------------------ | ------------------------------------------------------------ |
    | <img src="/img/ArticleInfo.png" alt="Article Info" style="zoom: 33%;" /> | <img src="/img/CreateReview.png" alt="Create reviews" style="zoom: 33%;" /> |
 
-4. You can pull the side drawer out. 
+5. You can pull the side drawer out. 
 
    | Pull the drawer out                                          | The drawer                                                   |
    | ------------------------------------------------------------ | ------------------------------------------------------------ |
